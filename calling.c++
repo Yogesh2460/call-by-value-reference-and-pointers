@@ -1,34 +1,48 @@
 #include <iostream>
+
 using namespace std;
 
-class rect{
-    public:
-    int x,y;
-    void call(){
-    cout<<"Enter x and y"<<endl;
-    cin>>x>>y;
-    }
-    };
-    class area: public rect{
+class pass
+{
 public:
-    int a;
-    void call(){
-     a=x*y;
-    cout<<"Area is "<<a<<endl;
+    void fake(int x,int y)
+    {
+
+        int z=x;
+        x=y;
+        y=z;
+        cout<<x<<y<<endl;
     }
-    };
-    class perimeter:public area{
-public:
-    int p;
-    void disp(){
-    p=2*(x+y);
-    cout<<"Perimeter is "<<p<<endl;
+    void fake1(int &x,int &y)
+    {
+
+        int z=x;
+        x=y;
+        y=z;
     }
-    };
+    void fake2(int *x,int *y)
+    {
+
+        int *z=x;
+        x=y;
+        y=z;
+    }
+
+};
 int main()
-{perimeter o1;
-o1.call();
-o1.get();
-o1.disp();
+{
+  int a,b;
+  cout<<"Enter 2 values"<<endl;
+  cin>>a>>b;
+  pass ob;
+  ob.fake(a,b);
+  cout<<"Value after swapping"<<a<<b<<endl;
+  ob.fake1(a,b);
+  cout<<"Value after swapping"<<a<<b<<endl;
+  int *c,*d;
+  c=&a;d=&b;
+  ob.fake2(&a,&b);
+  cout<<"value after swapping"<<*c<<*d<<endl;
     return 0;
 }
+
